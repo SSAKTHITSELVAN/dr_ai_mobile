@@ -1,0 +1,773 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+#root {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+.app-container {
+  height: 100vh;
+  height: 100dvh;
+  background: linear-gradient(135deg, #00417E 0%, #054E94 100%);
+  color: #FFFFFF;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-wrapper {
+  max-width: 375px;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.floating-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.floating-circle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.circle-1 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 120px;
+  height: 120px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.circle-3 {
+  width: 60px;
+  height: 60px;
+  top: 40%;
+  left: 70%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  33% { 
+    transform: translateY(-20px) rotate(120deg); 
+  }
+  66% { 
+    transform: translateY(10px) rotate(240deg); 
+  }
+}
+
+.header {
+  padding: 25px 20px 15px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.logo-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.logo {
+  font-family: 'Nunito', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-transform: lowercase;
+  margin: 0;
+  line-height: 1;
+}
+
+.tagline {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0.9;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.main-content {
+  flex: 1;
+  padding: 10px 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 2;
+  min-height: 0;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  padding: 0 15px;
+}
+
+.hero-subtitle {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 12px 16px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFC104;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  line-height: 1.4;
+}
+
+.premium-badge {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border-radius: 15px;
+  padding: 15px 12px;
+  margin-bottom: 18px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.premium-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.premium-features {
+  list-style: none;
+}
+
+.premium-features li {
+  padding: 4px 0;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.premium-features li::before {
+  content: "⭐";
+  margin-right: 8px;
+  font-size: 11px;
+}
+
+.waitlist-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px 15px 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 18px 14px 50px;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 193, 4, 0.6);
+  transform: translateY(-2px);
+}
+
+.join-button {
+  width: 100%;
+  padding: 18px 16px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #FFC104 0%, #FFB000 100%);
+  color: #00417E;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.join-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.join-button:active {
+  transform: translateY(0px);
+}
+
+.join-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button-content, .loading-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.button-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #00417E;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.success-message {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid rgba(76, 175, 80, 0.4);
+  color: #FFFFFF;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  animation: slideIn 0.5s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.success-icon {
+  width: 40px;
+  height: 40px;
+  color: #4CAF50;
+}
+
+.success-text {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 0 20px 20px;
+  font-size: 12px;
+  opacity: 0.6;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+/* Desktop/Laptop Styles */
+@media (min-width: 768px) {
+  .content-wrapper {
+    max-width: 400px;
+  }
+  
+  .header {
+    padding: 30px 20px 20px;
+  }
+  
+  .logo-section {
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .logo-image {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .logo {
+    font-size: 32px;
+  }
+  
+  .tagline {
+    font-size: 16px;
+  }
+  
+  .hero-title {
+    font-size: 22px;
+    padding: 0 20px;
+  }
+  
+  .footer {
+    padding: 0 20px 25px;
+    font-size: 13px;
+    opacity: 0.7;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-height: 600px) {
+  .header {
+    padding: 20px 20px 15px;
+  }
+  
+  .logo {
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
+  
+  .tagline {
+    font-size: 14px;
+  }
+  
+  .validation-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .premium-badge {
+    padding: 15px 12px;
+    margin-bottom: 15px;
+  }
+  
+  .premium-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .premium-features li {
+    padding: 4px 0;
+    font-size: 13px;
+  }
+  
+  .waitlist-form {
+    padding: 20px 15px;
+  }
+  
+  .form-group {
+    margin-bottom: 12px;
+  }
+  
+  .form-input {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  .join-button {
+    padding: 14px;
+    font-size: 15px;
+  }
+  
+  .footer {
+    padding: 15px;
+    font-size: 11px;
+  }
+}
+
+/* Extra small screens */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header {
+    padding: 10px 20px 8px;
+  }
+  
+  .logo {
+    font-size: 24px;
+  }
+  
+  .tagline {
+    font-size: 12px;
+  }
+  
+  .validation-text {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .premium-badge {
+    padding: 10px 8px;
+    margin-bottom: 10px;
+  }
+  
+  .premium-title {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  
+  .premium-features li {
+    padding: 2px 0;
+    font-size: 12px;
+  }
+  
+  .waitlist-form {
+    padding: 15px 12px;
+  }
+  
+  .form-input {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  
+  .join-button {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .footer {
+    padding: 10px;
+    font-size: 10px;
+  }
+}
+
+/* Prevent zoom on input focus (iOS) */
+@media screen and (max-width: 768px) {
+  .form-input {
+    font-size: 16px !important;
+  }
+}
+
+/* Hide scrollbars */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Add these styles to your existing App.css */
+
+/* Popup Modal Styles */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.popup-container {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 350px;
+  width: 100%;
+  position: relative;
+  animation: slideUp 0.4s ease-out;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1001;
+}
+
+.popup-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  transform: scale(1.1);
+}
+
+.popup-content {
+  padding: 35px 25px 25px;
+  text-align: center;
+}
+
+.popup-success-icon {
+  width: 60px;
+  height: 60px;
+  color: #4CAF50;
+  margin: 0 auto 20px;
+  animation: bounce 0.6s ease-out;
+}
+
+.popup-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.popup-message {
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.popup-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.whatsapp-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 16px;
+  padding: 14px 20px;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-btn:active {
+  transform: translateY(0px);
+}
+
+.skip-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 12px 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.skip-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.popup-info {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 193, 4, 0.9);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .popup-container {
+    max-width: 320px;
+    margin: 0 15px;
+  }
+  
+  .popup-content {
+    padding: 30px 20px 20px;
+  }
+  
+  .popup-success-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+  }
+  
+  .popup-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .popup-message {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .whatsapp-btn {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  .popup-info {
+    font-size: 11px;
+  }
+}
