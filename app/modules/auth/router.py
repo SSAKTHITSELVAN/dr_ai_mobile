@@ -1,4 +1,3 @@
-
 # =======================
 # File: app/modules/auth/router.py
 # Path: app/modules/auth/router.py
@@ -6,11 +5,12 @@
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from pydantic import BaseModel
+from datetime import timedelta
+
 from database.connection import get_db
 from database.models import User, Patient, Doctor, Pharmacy
 from utils.security import verify_password, get_password_hash, create_access_token
-from pydantic import BaseModel
-from datetime import timedelta
 from core.config import settings
 
 auth_router = APIRouter()
@@ -22,8 +22,8 @@ class UserRegister(BaseModel):
     user_type: str  # patient, doctor, pharmacy
     name: str
     # Additional fields based on user type
-    specialization: str = None  # for doctors
-    location: str = None
+    specialization: str | None = None  # for doctors
+    location: str | None = None
 
 class UserLogin(BaseModel):
     email: str
@@ -48,6 +48,7 @@ async def register(user_data: UserRegister, db: Session = Depends(get_db)):
     db.refresh(user)
     
     # Create profile based on user type
+    profile = None
     if user_data.user_type == "patient":
         profile = Patient(
             user_id=user.id,
@@ -70,8 +71,9 @@ async def register(user_data: UserRegister, db: Session = Depends(get_db)):
             phone=user_data.phone
         )
     
-    db.add(profile)
-    db.commit()
+    if profile:
+        db.add(profile)
+        db.commit()
     
     return {"message": "Registration successful", "user_id": user.id}
 
@@ -85,6 +87,17 @@ async def login(user_data: UserLogin, db: Session = Depends(get_db)):
             detail="Incorrect email or password"
         )
     
+    # --- START OF CORRECTION ---
+    # Find the specific profile ID based on the user_type. This is crucial for the frontend.
+    profile_id = None
+    if user.user_type == "doctor" and user.doctor:
+        profile_id = user.doctor.id
+    elif user.user_type == "patient" and user.patient:
+        profile_id = user.patient.id
+    elif user.user_type == "pharmacy" and user.pharmacy:
+        profile_id = user.pharmacy.id
+    # --- END OF CORRECTION ---
+    
     access_token_expires = timedelta(minutes=settings.access_token_expire_minutes)
     access_token = create_access_token(
         data={"sub": user.email, "user_id": user.id, "user_type": user.user_type},
@@ -95,5 +108,6 @@ async def login(user_data: UserLogin, db: Session = Depends(get_db)):
         "access_token": access_token,
         "token_type": "bearer",
         "user_type": user.user_type,
-        "user_id": user.id
+        "user_id": user.id,
+        "profile_id": profile_id  # CORRECTED: This is now sent to the app
     }

@@ -1,4 +1,3 @@
-
 # =======================
 # File: app/database/models.py
 # Path: app/database/models.py
@@ -7,7 +6,7 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime, Float, Boolean, ForeignKey, JSON
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from database.connection import Base
+from .connection import Base
 
 class User(Base):
     __tablename__ = "users"
@@ -19,6 +18,13 @@ class User(Base):
     user_type = Column(String, nullable=False)  # patient, doctor, pharmacy
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, server_default=func.now())
+    
+    # --- CORRECTED RELATIONSHIPS ---
+    patient = relationship("Patient", back_populates="user", uselist=False, cascade="all, delete-orphan")
+    doctor = relationship("Doctor", back_populates="user", uselist=False, cascade="all, delete-orphan")
+    pharmacy = relationship("Pharmacy", back_populates="user", uselist=False, cascade="all, delete-orphan")
+    posts = relationship("Post", back_populates="user")
+
 
 class Patient(Base):
     __tablename__ = "patients"
@@ -107,7 +113,7 @@ class Post(Base):
     likes = Column(Integer, default=0)
     created_at = Column(DateTime, server_default=func.now())
     
-    user = relationship("User")
+    user = relationship("User", back_populates="posts")
 
 class Insurance(Base):
     __tablename__ = "insurance_plans"
@@ -121,8 +127,3 @@ class Insurance(Base):
     age_limit = Column(String)
     description = Column(Text)
     eligibility = Column(JSON)
-
-# Add relationships
-User.patient = relationship("Patient", back_populates="user", uselist=False)
-User.doctor = relationship("Doctor", back_populates="user", uselist=False)
-User.pharmacy = relationship("Pharmacy", back_populates="user", uselist=False)
